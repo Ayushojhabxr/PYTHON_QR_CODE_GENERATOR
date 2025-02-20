@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>QR Code Generator</h2>
+        <form id="qrForm">
+            <input type="text" id="urlInput" name="url" placeholder="Enter your URL..." required>
+            <button type="submit">Generate QR Code</button>
+        </form>
+        <div id="qrcode" style="display: none;">
+            <img id="qrImage" alt="QR Code">
+            <br>
+            <a id="downloadLink" href="#" download="qrcode.png" style="display: none;">Download QR Code</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("qrForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            let url = document.getElementById("urlInput").value;
+            if (url.trim() === "") {
+                alert("Please enter a valid URL!");
+                return;
+            }
+
+            let qrImage = document.getElementById("qrImage");
+            let qrContainer = document.getElementById("qrcode");
+            let downloadLink = document.getElementById("downloadLink");
+
+            // Generate the QR Code Image URL
+            let qrUrl = `/generate_qr?url=${encodeURIComponent(url)}`;
+            qrImage.src = qrUrl;
+            qrImage.style.display = "block";
+            qrContainer.style.display = "block";
+
+            // Update Download Link
+            downloadLink.href = qrUrl;
+            downloadLink.style.display = "block";
+        });
+    </script>
+</body>
+</html>
