@@ -14,3 +14,9 @@ QR Code Generator: qrcode Python library
 
 🌍 Live Demo
 🔗 https://python-qr-code-generator-s6q1.onrender.com/
+
+🤝 Contributing
+Want to improve this project? Feel free to:
+Open an issue.
+Submit a pull request.
+Star ⭐ this repository!
